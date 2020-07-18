@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CD013ED724C1E3C800DA0221 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013ED624C1E3C800DA0221 /* PlaylistView.swift */; };
+		CD69FED324BDA67700F7B109 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD69FED224BDA67700F7B109 /* SettingsView.swift */; };
+		CDBED6C824BDDEAD004F3FE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBED6C724BDDEAD004F3FE3 /* Settings.swift */; };
 		CDBF453A24BD784B00D921C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF453924BD784B00D921C5 /* AppDelegate.swift */; };
 		CDBF453C24BD784B00D921C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF453B24BD784B00D921C5 /* SceneDelegate.swift */; };
 		CDBF453E24BD784B00D921C5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF453D24BD784B00D921C5 /* ContentView.swift */; };
@@ -16,6 +19,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CD013ED624C1E3C800DA0221 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		CD69FED224BDA67700F7B109 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CDBED6C724BDDEAD004F3FE3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDBF453624BD784B00D921C5 /* ClassicLearnOrQuizz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassicLearnOrQuizz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF453924BD784B00D921C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDBF453B24BD784B00D921C5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +46,7 @@
 		CDBF452D24BD784B00D921C5 = {
 			isa = PBXGroup;
 			children = (
+				CDBED6C724BDDEAD004F3FE3 /* Settings.swift */,
 				CDBF453824BD784B00D921C5 /* ClassicLearnOrQuizz */,
 				CDBF453724BD784B00D921C5 /* Products */,
 			);
@@ -56,6 +63,8 @@
 		CDBF453824BD784B00D921C5 /* ClassicLearnOrQuizz */ = {
 			isa = PBXGroup;
 			children = (
+				CD69FED224BDA67700F7B109 /* SettingsView.swift */,
+				CD013ED624C1E3C800DA0221 /* PlaylistView.swift */,
 				CDBF453924BD784B00D921C5 /* AppDelegate.swift */,
 				CDBF453B24BD784B00D921C5 /* SceneDelegate.swift */,
 				CDBF453D24BD784B00D921C5 /* ContentView.swift */,
@@ -146,9 +155,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CD013ED724C1E3C800DA0221 /* PlaylistView.swift in Sources */,
 				CDBF453A24BD784B00D921C5 /* AppDelegate.swift in Sources */,
 				CDBF453C24BD784B00D921C5 /* SceneDelegate.swift in Sources */,
+				CD69FED324BDA67700F7B109 /* SettingsView.swift in Sources */,
 				CDBF453E24BD784B00D921C5 /* ContentView.swift in Sources */,
+				CDBED6C824BDDEAD004F3FE3 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +301,7 @@
 				DEVELOPMENT_TEAM = T5BAAGBQWR;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ClassicLearnOrQuizz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -296,7 +309,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.ClassicLearnOrQuizz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -309,6 +322,7 @@
 				DEVELOPMENT_TEAM = T5BAAGBQWR;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ClassicLearnOrQuizz/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -316,7 +330,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.test.ClassicLearnOrQuizz;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
