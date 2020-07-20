@@ -14,6 +14,6 @@ class UserSettings: ObservableObject {
     @Published var learnMode = true
     
     // playlist en cours
-    @Published var currentPlaylist : String = "aucune playlist sélectionnée"
+    @Published var currentPlaylist : String = "aucune"
     @Published var playlists: [MPMediaItemCollection] = []
 }

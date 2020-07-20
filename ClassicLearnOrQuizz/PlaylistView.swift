@@ -18,22 +18,11 @@ struct PlaylistView: View {
     var body: some View {
         VStack {
             List(settings.playlists, id: \.self){ playlist in
-                HStack {
-                    Text(playlist.value(forProperty: MPMediaPlaylistPropertyName)! as! String)
-                    Spacer()
-                }
-            .contentShape(Rectangle())
-                .onTapGesture {
-                    let current : String = playlist.value(forProperty: MPMediaPlaylistPropertyName)! as! String
-                    print("tapped \(current)")
-                    self.settings.currentPlaylist = current
-                }
+                PlaylistDetail(playlistName: playlist.value(forProperty: MPMediaPlaylistPropertyName)! as! String)
             }.navigationBarTitle("Choix de la playlist", displayMode: .inline)
         }
     }
 }
-
-
 
 struct PlaylistView_Previews: PreviewProvider {
     static let settings = UserSettings()

@@ -16,6 +16,7 @@
 		CDBF454024BD784C00D921C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBF453F24BD784C00D921C5 /* Assets.xcassets */; };
 		CDBF454324BD784D00D921C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CDBF454224BD784D00D921C5 /* Preview Assets.xcassets */; };
 		CDBF454624BD784D00D921C5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDBF454424BD784D00D921C5 /* LaunchScreen.storyboard */; };
+		CDC37F7C24C2E0F600B37DB7 /* PlaylistDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC37F7B24C2E0F600B37DB7 /* PlaylistDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		CDBF454224BD784D00D921C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CDBF454524BD784D00D921C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CDBF454724BD784D00D921C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDC37F7B24C2E0F600B37DB7 /* PlaylistDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 			children = (
 				CD69FED224BDA67700F7B109 /* SettingsView.swift */,
 				CD013ED624C1E3C800DA0221 /* PlaylistView.swift */,
+				CDC37F7B24C2E0F600B37DB7 /* PlaylistDetail.swift */,
 				CDBF453924BD784B00D921C5 /* AppDelegate.swift */,
 				CDBF453B24BD784B00D921C5 /* SceneDelegate.swift */,
 				CDBF453D24BD784B00D921C5 /* ContentView.swift */,
@@ -155,6 +158,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CDC37F7C24C2E0F600B37DB7 /* PlaylistDetail.swift in Sources */,
 				CD013ED724C1E3C800DA0221 /* PlaylistView.swift in Sources */,
 				CDBF453A24BD784B00D921C5 /* AppDelegate.swift in Sources */,
 				CDBF453C24BD784B00D921C5 /* SceneDelegate.swift in Sources */,
