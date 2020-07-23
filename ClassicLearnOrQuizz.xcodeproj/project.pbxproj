@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		CD013ED724C1E3C800DA0221 /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD013ED624C1E3C800DA0221 /* PlaylistView.swift */; };
+		CD5C382E24C8726F00B98B6C /* PlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD5C382D24C8726F00B98B6C /* PlayView.swift */; };
 		CD69FED324BDA67700F7B109 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD69FED224BDA67700F7B109 /* SettingsView.swift */; };
+		CDA72E6C24C9C24200A0683E /* MesFonctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDA72E6B24C9C24200A0683E /* MesFonctions.swift */; };
+		CDAF2BD524C83C5200494D1D /* Speaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAF2BD424C83C5200494D1D /* Speaker.swift */; };
 		CDBED6C824BDDEAD004F3FE3 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBED6C724BDDEAD004F3FE3 /* Settings.swift */; };
 		CDBF453A24BD784B00D921C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF453924BD784B00D921C5 /* AppDelegate.swift */; };
 		CDBF453C24BD784B00D921C5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDBF453B24BD784B00D921C5 /* SceneDelegate.swift */; };
@@ -21,7 +24,10 @@
 
 /* Begin PBXFileReference section */
 		CD013ED624C1E3C800DA0221 /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		CD5C382D24C8726F00B98B6C /* PlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayView.swift; sourceTree = "<group>"; };
 		CD69FED224BDA67700F7B109 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CDA72E6B24C9C24200A0683E /* MesFonctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MesFonctions.swift; sourceTree = "<group>"; };
+		CDAF2BD424C83C5200494D1D /* Speaker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Speaker.swift; sourceTree = "<group>"; };
 		CDBED6C724BDDEAD004F3FE3 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		CDBF453624BD784B00D921C5 /* ClassicLearnOrQuizz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClassicLearnOrQuizz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDBF453924BD784B00D921C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -48,6 +54,7 @@
 		CDBF452D24BD784B00D921C5 = {
 			isa = PBXGroup;
 			children = (
+				CDAF2BD424C83C5200494D1D /* Speaker.swift */,
 				CDBED6C724BDDEAD004F3FE3 /* Settings.swift */,
 				CDBF453824BD784B00D921C5 /* ClassicLearnOrQuizz */,
 				CDBF453724BD784B00D921C5 /* Products */,
@@ -66,11 +73,13 @@
 			isa = PBXGroup;
 			children = (
 				CD69FED224BDA67700F7B109 /* SettingsView.swift */,
+				CDA72E6B24C9C24200A0683E /* MesFonctions.swift */,
 				CD013ED624C1E3C800DA0221 /* PlaylistView.swift */,
 				CDC37F7B24C2E0F600B37DB7 /* PlaylistDetail.swift */,
 				CDBF453924BD784B00D921C5 /* AppDelegate.swift */,
 				CDBF453B24BD784B00D921C5 /* SceneDelegate.swift */,
 				CDBF453D24BD784B00D921C5 /* ContentView.swift */,
+				CD5C382D24C8726F00B98B6C /* PlayView.swift */,
 				CDBF453F24BD784C00D921C5 /* Assets.xcassets */,
 				CDBF454424BD784D00D921C5 /* LaunchScreen.storyboard */,
 				CDBF454724BD784D00D921C5 /* Info.plist */,
@@ -161,8 +170,11 @@
 				CDC37F7C24C2E0F600B37DB7 /* PlaylistDetail.swift in Sources */,
 				CD013ED724C1E3C800DA0221 /* PlaylistView.swift in Sources */,
 				CDBF453A24BD784B00D921C5 /* AppDelegate.swift in Sources */,
+				CDAF2BD524C83C5200494D1D /* Speaker.swift in Sources */,
 				CDBF453C24BD784B00D921C5 /* SceneDelegate.swift in Sources */,
 				CD69FED324BDA67700F7B109 /* SettingsView.swift in Sources */,
+				CD5C382E24C8726F00B98B6C /* PlayView.swift in Sources */,
+				CDA72E6C24C9C24200A0683E /* MesFonctions.swift in Sources */,
 				CDBF453E24BD784B00D921C5 /* ContentView.swift in Sources */,
 				CDBED6C824BDDEAD004F3FE3 /* Settings.swift in Sources */,
 			);

@@ -38,33 +38,9 @@ struct SettingsView: View {
                 }
             }.navigationBarTitle(Text("Réglages"), displayMode: .inline)
         }.onAppear(perform: {
-            self.settings.playlists = self.getPlaylists()
-            
-        })
+                self.settings.playlists = getPlaylists(thatIncludeInName: "Classic")
+            })
     }
-    // mes fonctions
-    func getPlaylists() -> [MPMediaItemCollection]{
-        let noCloudPre = MPMediaPropertyPredicate(
-            value: NSNumber(value: false),
-          forProperty: MPMediaItemPropertyIsCloudItem
-        )
-        let query: MPMediaQuery = MPMediaQuery.playlists()
-        // -----------
-        query.addFilterPredicate(noCloudPre)
-        query.addFilterPredicate(MPMediaPropertyPredicate(
-          value: "Classic",
-          forProperty: MPMediaPlaylistPropertyName,
-          comparisonType: MPMediaPredicateComparison.contains
-        ))
-        // -----------
-        let playlists = query.collections ?? []
-        // print(playlists?.description)
-        for playlist in playlists{
-            print(playlist.value(forProperty: MPMediaPlaylistPropertyName)! as! String)
-        }
-        return playlists
-    }
-    
 }
 
 struct settingsView_Previews: PreviewProvider {

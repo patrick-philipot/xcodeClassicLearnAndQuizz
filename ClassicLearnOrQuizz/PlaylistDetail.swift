@@ -24,6 +24,7 @@ struct PlaylistDetail: View {
         .contentShape(Rectangle())
         .onTapGesture {
             self.settings.currentPlaylist = self.playlistName
+            UserDefaults.standard.set(self.playlistName, forKey: "currentPlaylist")
         }    }
 }
 
