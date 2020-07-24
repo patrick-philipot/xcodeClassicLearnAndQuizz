@@ -12,7 +12,6 @@ struct PlayView: View {
     // affiche le bouton PLAY/STOP
     // affiche le nom de la chanson courante
     @EnvironmentObject var settings: UserSettings
-    @State private var songName: String = ""
     @State private var songIndex: Int = 0
     @State private var isPlaying: Bool = false
     
@@ -28,14 +27,14 @@ struct PlayView: View {
                     .font(.title)
                     .foregroundColor(.green)
             })
-            Text(songName)
+            Text(settings.currentSong)
         }
     }
     
     // fonctions
     func playStart() {
         print("playStart")
-        playQuizz(forPlaylist: settings.currentPlaylist)
+        playQuizz(forPlaylist: settings.currentPlaylist, withSettings: settings)
     }
     
     func playStop() {

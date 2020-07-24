@@ -31,7 +31,7 @@ func getPlaylists(thatIncludeInName theString :String) -> [MPMediaItemCollection
 }
 
     // mes fonctions
-    func playQuizz(forPlaylist name: String) {
+func playQuizz(forPlaylist name: String, withSettings settings: UserSettings) {
         var songName: String = ""
 
         // Amelie est un objet de la classe Speaker pour la synthèse vocale
@@ -48,10 +48,17 @@ func getPlaylists(thatIncludeInName theString :String) -> [MPMediaItemCollection
         // --------------- récupération des morceaux dans un tableau
         let songs : [MPMediaItem] = query.items ?? []
         songName = songs[0].value(forProperty: MPMediaItemPropertyTitle) as! String
+        
+        // song ID
+        let songID = songs[0].value(forProperty: MPMediaItemPropertyPersistentID)
+        let query2 = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: songID, forProperty: MPMediaItemPropertyPersistentID, comparisonType: .equalTo)])
+    
+        // test settings
+        settings.currentSong = songName
 
         amelie.readText(someText: songName)
         // passe la requête au player
-        musicplayer.setQueue(with: query)
+        musicplayer.setQueue(with: query2)
         musicplayer.repeatMode = .none
         musicplayer.play()
         
