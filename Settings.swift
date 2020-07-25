@@ -17,4 +17,7 @@ class UserSettings: ObservableObject {
     @Published var currentPlaylist : String = "aucune"
     @Published var playlists: [MPMediaItemCollection] = []
     @Published var currentSong : String = ""
+    
+    // MPMediaPlayer
+    var MusicPlayer: MPMusicPlayerController?
 }

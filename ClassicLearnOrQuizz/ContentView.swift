@@ -44,6 +44,7 @@ struct ContentView: View {
             .navigationBarItems(trailing: NavigationLink( "Réglages", destination: SettingsView()))
         }.onAppear(perform: {
             self.settings.currentPlaylist = UserDefaults.standard.string(forKey: "currentPlaylist") ?? "Aucune"
+            self.settings.MusicPlayer = MPMusicPlayerController.applicationQueuePlayer
         })
     }
 

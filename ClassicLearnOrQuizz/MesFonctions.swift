@@ -37,7 +37,7 @@ func playQuizz(forPlaylist name: String, withSettings settings: UserSettings) {
         // Amelie est un objet de la classe Speaker pour la synthèse vocale
         let amelie = Speaker(voiceID: "com.apple.ttsbundle.Amelie-compact")
         
-        let musicplayer : MPMusicPlayerController = MPMusicPlayerController.systemMusicPlayer
+    let musicplayer : MPMusicPlayerController = settings.MusicPlayer!
         musicplayer.stop()
         // construction d'une requête ramenant tous les morceaux de la playlist
         let query = MPMediaQuery()
@@ -56,7 +56,7 @@ func playQuizz(forPlaylist name: String, withSettings settings: UserSettings) {
         // test settings
         settings.currentSong = songName
 
-        amelie.readText(someText: songName)
+        // amelie.readText(someText: songName)
         // passe la requête au player
         musicplayer.setQueue(with: query2)
         musicplayer.repeatMode = .none

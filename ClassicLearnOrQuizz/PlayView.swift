@@ -39,6 +39,7 @@ struct PlayView: View {
     
     func playStop() {
         print("playStop")
+        settings.MusicPlayer?.stop()
     }
 }
 

@@ -21,7 +21,7 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>Cette application souhaite bla bla bla</string>
+	<string>Cette application devra accéder à votre bibliothèque musicale</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
