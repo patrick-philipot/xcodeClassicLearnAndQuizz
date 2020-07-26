@@ -33,11 +33,25 @@ func getPlaylists(thatIncludeInName theString :String) -> [MPMediaItemCollection
     // mes fonctions
 func playQuizz(forPlaylist name: String, withSettings settings: UserSettings) {
         var songName: String = ""
+    
+        // detecting and of playing song
+        let trackChangedObserver : AnyObject?
 
         // Amelie est un objet de la classe Speaker pour la synthèse vocale
         let amelie = Speaker(voiceID: "com.apple.ttsbundle.Amelie-compact")
         
-    let musicplayer : MPMusicPlayerController = settings.MusicPlayer!
+        let musicplayer : MPMusicPlayerController = settings.MusicPlayer!
+    
+    
+        trackChangedObserver = NotificationCenter.default
+            .addObserver(forName: .MPMusicPlayerControllerNowPlayingItemDidChange,
+            object: nil, queue: OperationQueue.main) { (notification) -> Void in
+                updateTrackInformation()
+        }
+        
+        musicplayer.beginGeneratingPlaybackNotifications()
+    
+    
         musicplayer.stop()
         // construction d'une requête ramenant tous les morceaux de la playlist
         let query = MPMediaQuery()
@@ -58,14 +72,25 @@ func playQuizz(forPlaylist name: String, withSettings settings: UserSettings) {
 
         // amelie.readText(someText: songName)
         // passe la requête au player
-        musicplayer.setQueue(with: query2)
+        musicplayer.setQueue(with: query)
         musicplayer.repeatMode = .none
         musicplayer.play()
-        
+            
         func stopQuizz() {
+            musicplayer.endGeneratingPlaybackNotifications()
             musicplayer.stop()
         }
-        
+    
+        func updateTrackInformation() {
+            print("updateTrackInformation")
+            
+            // print(musicplayer.nowPlayingItem?.title ?? "no song")
+            if let mediaItem = musicplayer.nowPlayingItem {
+              print(String(mediaItem.persistentID))
+                print(musicplayer.indexOfNowPlayingItem)
+            }
+            
+        }
     }
     
 
