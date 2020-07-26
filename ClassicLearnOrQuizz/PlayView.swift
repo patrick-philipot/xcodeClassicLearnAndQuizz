@@ -34,7 +34,7 @@ struct PlayView: View {
     // fonctions
     func playStart() {
         print("playStart")
-        playQuizz(forPlaylist: settings.currentPlaylist, withSettings: settings)
+        playAllSong(forPlaylist: settings.currentPlaylist, withSettings: settings)
     }
     
     func playStop() {
