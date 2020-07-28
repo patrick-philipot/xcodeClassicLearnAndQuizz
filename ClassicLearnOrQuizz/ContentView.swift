@@ -8,6 +8,7 @@
 
 import SwiftUI
 import MediaPlayer
+import Combine
 
 struct ContentView: View {
     @EnvironmentObject var settings: UserSettings
@@ -45,7 +46,16 @@ struct ContentView: View {
         }.onAppear(perform: {
             self.settings.currentPlaylist = UserDefaults.standard.string(forKey: "currentPlaylist") ?? "Aucune"
             self.settings.MusicPlayer = MPMusicPlayerController.applicationQueuePlayer
-        })
+            })
+            
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+                print("Moving to the background!")
+                self.settings.isInBackground = true
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
+                print("Moving back to the foreground!")
+                self.settings.isInBackground = false
+            }
     }
 
 }

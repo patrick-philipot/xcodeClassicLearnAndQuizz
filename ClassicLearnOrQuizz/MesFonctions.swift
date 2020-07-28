@@ -58,7 +58,7 @@ func playAllSong(forPlaylist name: String, withSettings settings: UserSettings){
 
     // booléen pour sortir avant la fin
     // passe à Vrai sur l'action du bouton STOP
-    let stopPlayAll = false
+    var stopPlayAll = false
     
     func ActAndWait( index: Int, step: Int) {
         // index est l'indice d'accès séquentiel aux morceaux de la playlist
@@ -69,8 +69,13 @@ func playAllSong(forPlaylist name: String, withSettings settings: UserSettings){
         // nom du morceau à jouer
         var title: String
         
+        stopPlayAll = settings.isInBackground
+        
         // sortie avant la fin
-        if stopPlayAll == true { return }
+        if stopPlayAll == true {
+            print("stopPlayAll est vrai")
+            return
+        }
         
         // boucle récursive et asynchrone
         switch step {

@@ -20,4 +20,9 @@ class UserSettings: ObservableObject {
     
     // MPMediaPlayer
     var MusicPlayer: MPMusicPlayerController?
+    
+    // App state
+    var isInBackground = false
+    var indexOfPlayingSong = 0
+    
 }
