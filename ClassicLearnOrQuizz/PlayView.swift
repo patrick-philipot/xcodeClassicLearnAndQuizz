@@ -19,13 +19,26 @@ struct PlayView: View {
     var body: some View {
         VStack {
             Button(action: {
-                self.isPlaying.toggle()
+                self.isPlaying = true
                 // jouer ou arrêter ?
                 self.isPlaying ? self.playStart() : self.playStop()
             }, label: {
-                Text(self.isPlaying ? "STOP" : "PLAY")
+                Text("PLAY")
                     .font(.title)
                     .foregroundColor(.green)
+            })
+            Button(action: {
+                self.isPlaying = false
+                self.playStop()
+            }, label: {
+                Text("STOP")
+                    .font(.title)
+                    .foregroundColor(.red)
+            })
+            Button(action: {}, label: {
+                Text("RESUME")
+                    .font(.title)
+                    .foregroundColor(.blue)
             })
             Text(settings.currentSong)
         }
@@ -34,7 +47,7 @@ struct PlayView: View {
     // fonctions
     func playStart() {
         print("playStart")
-        playAllSong(forPlaylist: settings.currentPlaylist, withSettings: settings)
+        playAllSong(withSettings: settings)
     }
     
     func playStop() {

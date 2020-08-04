@@ -30,6 +30,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                // boutons de commande
                 if settings.currentPlaylist != "aucune" {
                     PlayView()
                 }
@@ -51,6 +52,8 @@ struct ContentView: View {
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                 print("Moving to the background!")
                 self.settings.isInBackground = true
+                // stopper la musique en cours
+                self.settings.MusicPlayer?.stop()
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 print("Moving back to the foreground!")

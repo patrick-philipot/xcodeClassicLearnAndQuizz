@@ -32,15 +32,16 @@ func getPlaylists(thatIncludeInName theString :String) -> [MPMediaItemCollection
 
     // mes fonctions
 //
-//MARK playAllSong
+// #MARK playAllSong
 // fonction récursive
-func playAllSong(forPlaylist name: String, withSettings settings: UserSettings){
+func playAllSong(withSettings settings: UserSettings){
     // Joue tous les morceaux de la playlist séquentiellement
     // - avec une annonce avant
     // - avec une annonce après
     //
     print("PlayAllSong")
     let musicplayer : MPMusicPlayerController = settings.MusicPlayer!
+    let name : String = settings.currentPlaylist
     
     // nombre de morceaux à jouer
     // construction d'une requête ramenant tous les morceaux de la playlist
@@ -117,11 +118,19 @@ func playAllSong(forPlaylist name: String, withSettings settings: UserSettings){
                 
             }
             // traitement immédiat
-            // lire l'annonce intro
-            // readText appellera todoNext() quand le texte aura été lu (didFinish)
-            amelie.readText(someText: "Vous allez entendre. Un extrait de. \(title)")
-            
-            
+            // détecter la mise en arrière plan
+            if settings.isInBackground {
+                print("ActAndWait passage en arrière plan détecté avant annonce début")
+            } else {
+                // lire l'annonce intro
+                // readText appellera todoNext() quand le texte aura été lu (didFinish)
+                if settings.learnMode {
+                    amelie.readText(someText: "Vous allez entendre. Un extrait de. \(title)")
+                } else {
+                    amelie.readText(someText: "Écoutez et retrouvez l'oeuvre et l'auteur")
+                }
+            }
+
         default :
             // lire l'annonce de fin
             // préparer le traitement suivant
@@ -131,13 +140,17 @@ func playAllSong(forPlaylist name: String, withSettings settings: UserSettings){
                 if n < count {
                     ActAndWait(index: n, step: 0)
                 }
-                
             }
             // traitement immédiat
-            title = songs[index].value(forProperty: MPMediaItemPropertyTitle) as! String
-            // lire l'annonce de fin
-            // readText appellera todoNext() quand le texte aura été lu (didFinish)
-            amelie.readText(someText: "Vous avez écouté. Un extrait de. \(title)")
+            // détecter la mise en arrière plan
+            if settings.isInBackground {
+                print("ActAndWait passage en arrière plan détecté avant annonce fin")
+            } else {
+                title = songs[index].value(forProperty: MPMediaItemPropertyTitle) as! String
+                // lire l'annonce de fin
+                // readText appellera todoNext() quand le texte aura été lu (didFinish)
+                amelie.readText(someText: "Vous avez écouté. Un extrait de. \(title)")
+            }
         }
     } // func
     
@@ -146,164 +159,3 @@ func playAllSong(forPlaylist name: String, withSettings settings: UserSettings){
     
 }
 
-//func ios_playSong(atIndex sIndex: Int) {
-//    // le morceau à jouer
-//    // obtenir le ID persistent du morceau (ne dépend pas de la playlist)
-//    let selectedItem: NSNumber = songs[sIndex].value(forKey: MPMediaItemPropertyPersistentID) as! NSNumber
-//
-//    print("MPMediaItemPropertyPersistentID \(selectedItem)")
-//
-//    musicplayer.stop()
-//    // construction d'une requête ramenant un seul morceau
-//    let query = MPMediaQuery()
-//    // le prédicat décrit les conditions
-//    let predicate = MPMediaPropertyPredicate(value: selectedItem, forProperty: MPMediaItemPropertyPersistentID )
-//    query.addFilterPredicate(predicate)
-//    // passe la requête au player
-//    musicplayer.setQueue(with: query)
-//    musicplayer.repeatMode = .none
-//    musicplayer.play()
-//}
-
-
-
-
-
-//func playQuizz(forPlaylist name: String, withSettings settings: UserSettings) {
-//    var songName: String = ""
-//
-//    // detecting and of playing song
-//    let trackChangedObserver : AnyObject?
-//
-//    // Amelie est un objet de la classe Speaker pour la synthèse vocale
-//    let amelie = Speaker(voiceID: "com.apple.ttsbundle.Amelie-compact")
-//
-//    let musicplayer : MPMusicPlayerController = settings.MusicPlayer!
-//
-//
-//    trackChangedObserver = NotificationCenter.default
-//        .addObserver(forName: .MPMusicPlayerControllerNowPlayingItemDidChange,
-//        object: nil, queue: OperationQueue.main) { (notification) -> Void in
-//            updateTrackInformation()
-//    }
-//
-//    musicplayer.beginGeneratingPlaybackNotifications()
-//
-//
-//    musicplayer.stop()
-//    // construction d'une requête ramenant tous les morceaux de la playlist
-//    let query = MPMediaQuery()
-//    // le prédicat décrit les conditions
-//    let predicate = MPMediaPropertyPredicate(value: name, forProperty: MPMediaPlaylistPropertyName )
-//    query.addFilterPredicate(predicate)
-//
-//    // --------------- récupération des morceaux dans un tableau
-//    let songs : [MPMediaItem] = query.items ?? []
-//    songName = songs[0].value(forProperty: MPMediaItemPropertyTitle) as! String
-//
-//    // song ID
-//    let songID = songs[0].value(forProperty: MPMediaItemPropertyPersistentID)
-//    let query2 = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: songID, forProperty: MPMediaItemPropertyPersistentID, comparisonType: .equalTo)])
-//
-//    // test settings
-//    settings.currentSong = songName
-//
-//    // amelie.readText(someText: songName)
-//    // passe la requête au player
-//    musicplayer.setQueue(with: query)
-//    musicplayer.repeatMode = .none
-//    musicplayer.play()
-//
-//    func stopQuizz() {
-//        musicplayer.endGeneratingPlaybackNotifications()
-//        musicplayer.stop()
-//    }
-//
-//    func updateTrackInformation() {
-//        print("updateTrackInformation")
-//
-//        // print(musicplayer.nowPlayingItem?.title ?? "no song")
-//        if let mediaItem = musicplayer.nowPlayingItem {
-//          print(String(mediaItem.persistentID))
-//            print(musicplayer.indexOfNowPlayingItem)
-//        }
-//
-//    }
-//}
-//
-//
-//func playQuizz2(forPlaylist name: String, withSettings settings: UserSettings) {
-//    var songName: String = ""
-//
-//    // detecting and of playing song
-//    let trackChangedObserver : AnyObject?
-//    var currentSongIndex: Int = 0
-//
-//    // Amelie est un objet de la classe Speaker pour la synthèse vocale
-//    let amelie = Speaker(voiceID: "com.apple.ttsbundle.Amelie-compact")
-//
-//    let musicplayer : MPMusicPlayerController = settings.MusicPlayer!
-//
-//
-//    trackChangedObserver = NotificationCenter.default
-//        .addObserver(forName: .MPMusicPlayerControllerNowPlayingItemDidChange,
-//        object: nil, queue: OperationQueue.main) { (notification) -> Void in
-//            updateTrackInformation()
-//    }
-//
-//    musicplayer.beginGeneratingPlaybackNotifications()
-//
-//
-//    musicplayer.stop()
-//    // construction d'une requête ramenant tous les morceaux de la playlist
-//    let query = MPMediaQuery()
-//    // le prédicat décrit les conditions
-//    let predicate = MPMediaPropertyPredicate(value: name, forProperty: MPMediaPlaylistPropertyName )
-//    query.addFilterPredicate(predicate)
-//
-////    // --------------- récupération des morceaux dans un tableau
-////    let songs : [MPMediaItem] = query.items ?? []
-////    songName = songs[0].value(forProperty: MPMediaItemPropertyTitle) as! String
-////
-////    // song ID
-////    let songID = songs[0].value(forProperty: MPMediaItemPropertyPersistentID)
-////    let query2 = MPMediaQuery(filterPredicates: [MPMediaPropertyPredicate(value: songID, forProperty: MPMediaItemPropertyPersistentID, comparisonType: .equalTo)])
-////
-////    // test settings
-////    settings.currentSong = songName
-//
-//    // amelie.readText(someText: songName)
-//    // passe la requête au player
-//    musicplayer.setQueue(with: query)
-//    musicplayer.repeatMode = .none
-//    musicplayer.shuffleMode = .off
-//    musicplayer.play()
-//
-//    func stopQuizz() {
-//        musicplayer.endGeneratingPlaybackNotifications()
-//        musicplayer.stop()
-//    }
-//
-//    func updateTrackInformation() {
-//        var newIndex: Int
-//        var songTitle: String
-//        print("updateTrackInformation")
-//
-//        // print(musicplayer.nowPlayingItem?.title ?? "no song")
-//        if let mediaItem = musicplayer.nowPlayingItem {
-//            songTitle = mediaItem.title!
-//            print(songTitle)
-//            newIndex = musicplayer.indexOfNowPlayingItem
-//            if newIndex != currentSongIndex {
-//                musicplayer.pause()
-//                currentSongIndex = newIndex
-//                amelie.todoNext = {
-//                    print("amelie did speak")
-//                    musicplayer.play()
-//                    print("after play")
-//                }
-//                amelie.readText(someText: songTitle)
-//            }
-//        }
-//    }
-//}
