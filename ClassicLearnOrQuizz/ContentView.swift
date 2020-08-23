@@ -45,12 +45,17 @@ struct ContentView: View {
             .navigationBarTitle(Text(myTitle), displayMode: .inline)
             .navigationBarItems(trailing: NavigationLink( "Réglages", destination: SettingsView()))
         }.onAppear(perform: {
+            // getting settings values from UserDefault
             self.settings.currentPlaylist = UserDefaults.standard.string(forKey: "currentPlaylist") ?? "Aucune"
+            self.settings.quizzMode = UserDefaults.standard.bool(forKey: "quizzMode")
+            self.settings.learnMode = UserDefaults.standard.bool(forKey: "learnMode")
             self.settings.MusicPlayer = MPMusicPlayerController.applicationQueuePlayer
             })
             
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
                 print("Moving to the background!")
+                UserDefaults.standard.set(self.settings.learnMode, forKey: "learnMode")
+                UserDefaults.standard.set(self.settings.quizzMode, forKey: "quizzMode")
                 self.settings.isInBackground = true
                 // stopper la musique en cours
                 self.settings.MusicPlayer?.stop()

@@ -38,7 +38,11 @@ struct SettingsView: View {
                 }
             }.navigationBarTitle(Text("Réglages"), displayMode: .inline)
         }.onAppear(perform: {
+            // lire les réglages
                 self.settings.playlists = getPlaylists(thatIncludeInName: "Classic")
+            })
+            .onDisappear(perform: {
+                print("On Disappear")
             })
     }
 }
@@ -50,5 +54,6 @@ struct settingsView_Previews: PreviewProvider {
         .environmentObject(settings)
     }
 }
+
 
 

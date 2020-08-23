@@ -70,7 +70,11 @@ func playAllSong(withSettings settings: UserSettings){
         // nom du morceau à jouer
         var title: String
         
-        stopPlayAll = settings.isInBackground
+        if settings.isInBackground {
+            print("ActAndWait l'app est passée en background")
+            print("index = \(index), step = \(step)")
+        }
+        
         
         // sortie avant la fin
         if stopPlayAll == true {
