@@ -66,21 +66,22 @@ func playAllSong(withSettings settings: UserSettings){
         // step décrit l'action à réaliser
         // step = 0 -> lire l'annonce d'intro, puis jouer le morceau
         // step > 0 -> lire l'annonce après
+        
+        print("ActAndWait with index = \(index) and step = \(step)")
+        
+        if settings.isInBackground == true {
+            print("ActAndWait isInBackGround with index = \(index) and step = \(step)")
+            settings.stopped = true
+        }
 
         // nom du morceau à jouer
         var title: String
         
-        if settings.isInBackground {
-            print("ActAndWait l'app est passée en background")
-            print("index = \(index), step = \(step)")
-        }
-        
-        
-        // sortie avant la fin
-        if stopPlayAll == true {
-            print("stopPlayAll est vrai")
-            return
-        }
+//        // sortie avant la fin
+//        if stopPlayAll == true {
+//            print("stopPlayAll est vrai")
+//            return
+//        }
         
         // boucle récursive et asynchrone
         switch step {
@@ -95,7 +96,7 @@ func playAllSong(withSettings settings: UserSettings){
             // elle sera appelée après la lecture de l'introduction
             // grâce à un timer
             // Préparer le traitement suivant
-            amelie.todoNext = {
+            amelie.todoNext = settings.stopped ? { return } : {
                 let duration: Double = songs[index].value(forKey: MPMediaItemPropertyPlaybackDuration) as! TimeInterval
 
                 // équivalent d'un timer asynchrone
@@ -119,12 +120,11 @@ func playAllSong(withSettings settings: UserSettings){
                 musicplayer.setQueue(with: query)
                 musicplayer.repeatMode = .none
                 musicplayer.play()
-                
             }
             // traitement immédiat
             // détecter la mise en arrière plan
-            if settings.isInBackground {
-                print("ActAndWait passage en arrière plan détecté avant annonce début")
+            if settings.stopped {
+                print("ActAndWait stopped")
             } else {
                 // lire l'annonce intro
                 // readText appellera todoNext() quand le texte aura été lu (didFinish)
@@ -138,7 +138,7 @@ func playAllSong(withSettings settings: UserSettings){
         default :
             // lire l'annonce de fin
             // préparer le traitement suivant
-            amelie.todoNext = {
+            amelie.todoNext = settings.stopped ? { return } : {
                 // jouer le morceau suivant
                 let n = index + 1
                 if n < count {
@@ -147,8 +147,8 @@ func playAllSong(withSettings settings: UserSettings){
             }
             // traitement immédiat
             // détecter la mise en arrière plan
-            if settings.isInBackground {
-                print("ActAndWait passage en arrière plan détecté avant annonce fin")
+            if settings.stopped {
+                print("ActAndWait stopped avant annonce fin")
             } else {
                 title = songs[index].value(forProperty: MPMediaItemPropertyTitle) as! String
                 // lire l'annonce de fin

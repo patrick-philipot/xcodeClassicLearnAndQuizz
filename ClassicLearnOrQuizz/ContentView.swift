@@ -59,6 +59,7 @@ struct ContentView: View {
                 self.settings.isInBackground = true
                 // stopper la musique en cours
                 self.settings.MusicPlayer?.stop()
+                print("stopped musicplayer")
             }
             .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
                 print("Moving back to the foreground!")

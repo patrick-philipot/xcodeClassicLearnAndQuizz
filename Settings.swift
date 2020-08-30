@@ -24,5 +24,6 @@ class UserSettings: ObservableObject {
     // App state
     var isInBackground = false
     var indexOfPlayingSong = 0
+    var stopped = false
     
 }

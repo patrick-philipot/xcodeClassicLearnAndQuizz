@@ -18,41 +18,48 @@ struct PlayView: View {
     
     var body: some View {
         VStack {
-            Button(action: {
-                self.isPlaying = true
-                // jouer ou arrêter ?
-                self.isPlaying ? self.playStart() : self.playStop()
-            }, label: {
-                Text("PLAY")
-                    .font(.title)
-                    .foregroundColor(.green)
-            })
-            Button(action: {
+            if !isPlaying {
+                Button(action: {
+                    self.isPlaying = true
+                    // jouer ou arrêter ?
+                    self.isPlaying ? self.playStart() : self.playStop()
+                }, label: {
+                    Text("PLAY")
+                        .font(.title)
+                        .foregroundColor(.green)
+                })
+            }
+            if isPlaying {
+                Button(action: {
                 self.isPlaying = false
                 self.playStop()
-            }, label: {
-                Text("STOP")
-                    .font(.title)
-                    .foregroundColor(.red)
-            })
-            Button(action: {}, label: {
-                Text("RESUME")
-                    .font(.title)
-                    .foregroundColor(.blue)
-            })
+                }, label: {
+                    Text("STOP")
+                        .font(.title)
+                        .foregroundColor(.red)
+                })
+            }
+//            Button(action: {}, label: {
+//                Text("RESUME")
+//                    .font(.title)
+//                    .foregroundColor(.blue)
+//            })
             Text(settings.currentSong)
+            Text("IOS 14")
         }
     }
     
     // fonctions
     func playStart() {
         print("playStart")
+        settings.stopped = false
         playAllSong(withSettings: settings)
     }
     
     func playStop() {
         print("playStop")
         settings.MusicPlayer?.stop()
+        settings.stopped = true
     }
 }
 
